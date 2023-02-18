@@ -27,7 +27,7 @@ enum {
 };
 
 struct log_t create_log_t(char* file,unsigned int attr);
-struct log_t create_f_log_t(FILE* dest,unsigned int attr);
+struct log_t create_log_t_f(FILE* dest,unsigned int attr);
 int put_log_t(struct log_t* log,const char* expr,...);
 int destory_log_t(struct log_t* log);
 
