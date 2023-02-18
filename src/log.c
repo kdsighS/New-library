@@ -24,7 +24,7 @@ struct log_t create_log_t(char* file,unsigned int attr){
 	log.attr = attr;
 	return log;
 };
-struct log_t create_f_log_t(FILE* dest,unsigned int attr){
+struct log_t create_log_t_f(FILE* dest,unsigned int attr){
 	log_t log;
 	log.lock = create_lock_t(1);
 	log.dest = dest;
