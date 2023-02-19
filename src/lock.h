@@ -13,6 +13,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #ifndef __NEW_LIBRARY_LOCK_H__
 #define __NEW_LIBRARY_LOCK_H__
 
+<<<<<<< HEAD
 #include "header.h"
 
 typedef volatile struct _nl_lock_t{
