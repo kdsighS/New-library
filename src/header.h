@@ -24,7 +24,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #define NL_OK 1
 #define NL_ERR 0
 
-typedef unsigned long size_t;
+typedef unsigned long nl_size_t;
+
+#define NL_SIZE_T_SIZE sizeof(nl_size_t)
+#define NL_SIZE_T_BIT (NL_SIZE_T_SIZE * 8)
 
 #ifndef NULL
 #define NULL (void*)0x0
