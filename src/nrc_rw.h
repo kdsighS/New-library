@@ -10,25 +10,33 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef __NEW_LIBRARY_LOCK_H__
-#define __NEW_LIBRARY_LOCK_H__
+#ifndef __NEW_LIBRARY_NRC_RW_H__
+#define __NEW_LIBRARY_NRC_RW_H__
 
 #include "header.h"
+#include "lock.h"
 
-typedef volatile struct _nl_lock_t{
-	nl_size_t now;
-	nl_size_t max;
-	nl_size_t seed;
-} nl_lock_t;
+typedef struct nl_nrc_entry_t {
+	nl_nrc_entry_t* next;
+	struct {
+		char* label;
+		nl_size_t lenght;
+	} label;
+	struct {
+		char* info;
+		nl_size_t lenght;
+	} info;
+} nl_nrc_entry_t;
 
+typedef struct nl_nrc_t {
+	nl_lock_t lock;
+	struct {
+		nl_nrc_entry_t* entry;
+		nl_size_t count;
+	} entry;
+	struct {
 
-typedef volatile nl_size_t nl_lock_h_t;
+	} info;
+} nl_nrc_t;
 
-#define NL_LOCK_ERR 0x0
-
-
-nl_lock_t nl_create_lock_t(unsigned int max);
-nl_lock_h_t nl_try_lock_t(nl_lock_t* lock);
-nl_lock_h_t nl_while_lock_t(nl_lock_t* lock);
-int nl_un_lock_t(nl_lock_t* lock,nl_lock_h_t* handle);
 #endif
