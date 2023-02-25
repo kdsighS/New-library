@@ -13,6 +13,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "hashmap.h"
 #include "string.h"
 #include "malloc.h"
+#include "stack.h"
 
 struct nl_hashmap_t nl_create_hashmap_t(nl_size_t size){
 	struct nl_hashmap_t hashmap;
@@ -126,7 +127,17 @@ int nl_delete_hashmap_t(struct nl_hashmap_t* map,void* name,nl_size_t name_lengh
 	return NL_ERR;
 };
 int nl_destory_hashmap_t(struct nl_hashmap_t* map){
-
+	for (nl_size_t i = 0;i < map -> size;i++){
+		struct nl_hashmap_node_t* node = map -> entrys[i];
+		struct nl_hashmap_node_t* node_temp = NULL;
+		for (;node;node = node_temp){
+			node_temp = node -> next;
+			nl_free(node -> entry.name);
+			nl_free(node -> data.data);
+			nl_free(node);
+		};
+	};
+	return NL_OK;
 };
 
 nl_size_t nl_hash_hashmap_t(void* d,nl_size_t size){
