@@ -10,12 +10,33 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "math.h"
+#ifndef __NEW_LIBRARY_NRC_RW_H__
+#define __NEW_LIBRARY_NRC_RW_H__
 
-nl_size_t nl_random(nl_size_t seed){
-	for(nl_size_t i = 0;i < (seed ^ (NL_SIZE_T_SIZE-2)) && i < (1 << 5);i++){
-		seed = seed ^ (seed * seed);
-		seed -= (seed >> 2);
-	};
-	return seed;
-};
+#include "header.h"
+#include "lock.h"
+
+typedef struct nl_nrc_entry_t {
+	nl_nrc_entry_t* next;
+	struct {
+		char* label;
+		nl_size_t lenght;
+	} label;
+	struct {
+		char* info;
+		nl_size_t lenght;
+	} info;
+} nl_nrc_entry_t;
+
+typedef struct nl_nrc_t {
+	nl_lock_t lock;
+	struct {
+		nl_nrc_entry_t* entry;
+		nl_size_t count;
+	} entry;
+	struct {
+
+	} info;
+} nl_nrc_t;
+
+#endif

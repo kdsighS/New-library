@@ -24,12 +24,21 @@ ALL:
 
 COMPILE:
 	cd $(SRC) && make INCLUDE=$(INCLUDE) ROOT=$(ROOT) SRC=$(SRC) -f Makefile
+	mv $(SRC)/*.o $(BUILD_LIB)
+	cp $(SRC)/*.h $(BUILD_INCLUDE)
+	$(shell test -e $(BUILD_LIB)/libnlibrary.a || rm $(BUILD_LIB)/libnlibrary.a)
+	ar -q $(BUILD_LIB)/libnlibrary.a $(BUILD_LIB)/*.o
+
+.PHONY:DEBUG
+
+DEBUG:
+	cd $(SRC) && make INCLUDE=$(INCLUDE) ROOT=$(ROOT) SRC=$(SRC) -f Makefile DEBUG
 	cp $(SRC)/*.o $(BUILD_LIB)
 	cp $(SRC)/*.h $(BUILD_INCLUDE)
 	$(shell test -e $(BUILD_LIB)/libnlibrary.a || rm $(BUILD_LIB)/libnlibrary.a)
 	ar -q $(BUILD_LIB)/libnlibrary.a $(BUILD_LIB)/*.o
-	rm $(SRC)/*.o
+
 .PHONY:CLEAN
 
 CLEAN:
-	rm $(BUILD) -r
+	-rm $(BUILD) -r

@@ -10,12 +10,13 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "math.h"
+#include "malloc.h"
+#include <malloc.h>
 
-nl_size_t nl_random(nl_size_t seed){
-	for(nl_size_t i = 0;i < (seed ^ (NL_SIZE_T_SIZE-2)) && i < (1 << 5);i++){
-		seed = seed ^ (seed * seed);
-		seed -= (seed >> 2);
-	};
-	return seed;
+void* nl_malloc(nl_size_t size){
+	return malloc(size);
+};
+int nl_free(void* dest){
+	free(dest);
+	return NL_OK;
 };
