@@ -14,6 +14,7 @@ if test $1 = "HELP"  ;then
 	echo "	HELP	Display HELP."
 	echo "	CLEAN	Clean build tree."
 	echo "	COMPILE	compile."
+	echo "	DEBUG	debug compile"
 	exit 0
 fi
 
