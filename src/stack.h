@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2023 Free Nothing
+Copyright (c) 2023 Free Noyhing
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -16,30 +16,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "header.h"
 #include "lock.h"
 
-typedef struct stack_t {
-	lock_t lock;
+typedef struct nl_stack_t {
+	nl_lock_t lock;
 	void* base;
-	size_t top;
-	size_t current;
-} stack_t;
+	nl_size_t top;
+	nl_size_t current;
+} nl_stack_t;
 
-typedef struct b_stack_t {
-	struct stack_t stack;
-	size_t each;
-} b_stack_t;
+typedef struct nl_b_stack_t {
+	struct nl_stack_t stack;
+	nl_size_t each;
+} nl_b_stack_t;
 
-struct stack_t create_stack_t(void);
-struct stack_t create_stack_t_i(size_t initial_size);
-int push_stack_t(struct stack_t* stack,void* source,size_t size);
-int pop_stack_t(struct stack_t* stack,void* dest,size_t size);
-int clean_stack_t(struct stack_t* stack);
-int destory_stack_t(struct stack_t* stack);
+struct nl_stack_t nl_create_stack_t(void);
+struct nl_stack_t nl_create_stack_t_i(nl_size_t initial_size);
+int nl_push_stack_t(struct nl_stack_t* stack,void* source,nl_size_t size);
+int nl_pop_stack_t(struct nl_stack_t* stack,void* dest,nl_size_t size);
+int nl_clean_stack_t(struct nl_stack_t* stack);
+int nl_destory_stack_t(struct nl_stack_t* stack);
 
-struct b_stack_t create_b_stack_t(size_t each_size);
-struct b_stack_t create_b_stack_t_i(size_t each_size,size_t initial_size);
-int push_b_stack_t(struct b_stack_t* stack,void* source);
-int pop_b_stack_t(struct b_stack_t* stack,void* dest);
-int clean_b_stack_t(struct b_stack_t* stack);
-int destory_b_stack_t(struct b_stack_t* stack);
+struct nl_b_stack_t nl_create_b_stack_t(nl_size_t each_size);
+struct nl_b_stack_t nl_create_b_stack_t_i(nl_size_t each_size,nl_size_t initial_size);
+int nl_push_b_stack_t(struct nl_b_stack_t* stack,void* source);
+int nl_pop_b_stack_t(struct nl_b_stack_t* stack,void* dest);
+int nl_clean_b_stack_t(struct nl_b_stack_t* stack);
+int nl_destory_b_stack_t(struct nl_b_stack_t* stack);
 
 #endif

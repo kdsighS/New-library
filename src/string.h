@@ -10,27 +10,14 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef __NEW_LIBRARY_HEADER_H__
-#define __NEW_LIBRARY_HEADER_H__
+#ifndef __NEW_LIBRARY_STRING_H__
+#define __NEW_LIBRARY_STRING_H__
 
-#define NEW_LIBRARY_VERSION_MAJOR 0
-#define NEW_LIBRARY_VERSION_MINOR 0
-#define NEW_LIBRARY_VERSION_PATCH 1
+#include "header.h"
 
-#define NEW_LIBRARY_VERSION_STRING "Pre-alpha 0.0.1"
-
-
-
-#define NL_OK 1
-#define NL_ERR 0
-
-typedef unsigned long nl_size_t;
-
-#define NL_SIZE_T_SIZE sizeof(nl_size_t)
-#define NL_SIZE_T_BIT (NL_SIZE_T_SIZE * 8)
-
-#ifndef NULL
-#define NULL (void*)0x0
-#endif
+int nl_strcmp(const char* a,const char* b);
+int nl_strncmp(const char* a,nl_size_t a_l,const char* b,nl_size_t b_l);
+int nl_strlen(const char* string);
+void* nl_memcpy(void* dest,const void* src,nl_size_t size);
 
 #endif
